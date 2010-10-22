@@ -1,9 +1,8 @@
-/*
- * Websearch - jQuery UI widget
- */
+/*** Websearch - jQuery UI widget ***/
 
-.ui-websearch .ui-state-default {
+.ui-websearch .ui-state-default, .ui-websearch input {
 	padding: 0;
+	margin: 0;
 }
 /* search button */
 .ui-websearch .ui-icon-websearch {

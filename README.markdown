@@ -1,3 +1,6 @@
+**WebSearchUI** - jQuery UI Widget (get non-dependant [version here][1])
+----------
+
 **Overview** ([demo][1])
 
 This code is designed to make it easy to add a search widget to your web site.
@@ -46,6 +49,7 @@ It utilizes the jQuery widget factory so that makes it dependent on jQuery and s
                 windowTarget    : '_blank',  // Choose from '_blank', '_parent', '_self', '_top' or '{framename}'
                 windowOptions   : '',        // Window options ("menubar=1,resizable=1,width=350,height=250", etc)
                 tooltipClass    : 'tooltip', // class added to the button, in case tooltips are to be used (site name and above message are in the button title).
+                hideSelector    : false,     // if true, the site selector button will be hidden
                 sortList        : true,      // if true, the site selection list will be sorted.
                 hidden          : false,     // if true, the entire websearch widget will be hidden.
                 searchResult    : null,      // add a search method here in case you want to open the search page in a lightbox.
@@ -62,7 +66,11 @@ It utilizes the jQuery widget factory so that makes it dependent on jQuery and s
         })
 
 
-**Methods** (most are from the UI widget interface)
+**Methods**
+
+Some examples show two methods:
+        * the first is from the UI widget interface
+        * the second works with both this version and the non-UI version
 
 * Destroy
 
@@ -70,19 +78,22 @@ It utilizes the jQuery widget factory so that makes it dependent on jQuery and s
 
 * Get
 
-         // Get current search site
-         var current = $('#web-search').websearch('current'); // returns "Google"
+        // Get current search site (two methods)
+        var current = $('#web-search').websearch('current');        // returns "Google"
+        var current = $('#web-search').data('websearch').current(); // returns "Google"
 
 * Set
 
-         // Set current search site
-         var current = $('#web-search').websearch('current', 'Yahoo'); // sets and returns "Yahoo"
+        // Set current search site (two methods)
+        var current = $('#web-search').websearch('current', 'Yahoo'); // sets and returns "Yahoo"
+        var current = $('#web-search').data('websearch').current('Yahoo'); // sets and returns "Yahoo"
 
 * Search
 
-         // Initiate a search 
-         // .websearch('search', {query}, {window target}, {window options});
-         $('#web-search').websearch('search', 'Homer Simpson', '_blank', 'menubar=0');
+        // Initiate a search (two methods)
+        // .websearch('search', {query}, {window target}, {window options});
+        $('#web-search').websearch('search', 'Homer Simpson', '_blank', 'menubar=0');
+        $('#web-search').data('websearch').search('Homer Simpson', '_blank', 'menubar=0');
 
 * Search Result Method
 
@@ -126,6 +137,13 @@ It utilizes the jQuery widget factory so that makes it dependent on jQuery and s
 
 **Change Log**
 
+* Version 1.1.1
+
+    * Added <code>hideSelector</code> option to allow hiding the site selector button
+    * Moved & Renamed the respository to WebSearchUI
+    * Improved the sharpness of the search site icons.
+    * Removed destroy method from non-jQuery UI version.
+
 * Version 1.1
 
     * Added an extra button with a down arrow next to the search button to make it's function more clear.
@@ -141,4 +159,5 @@ It utilizes the jQuery widget factory so that makes it dependent on jQuery and s
 
     * initial commit
 
- [1]: http://mottie.github.com/WebSearch/
+ [1]: http://github.com/Mottie/WebSearch
+ [2]: http://mottie.github.com/WebSearchUI/

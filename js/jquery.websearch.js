@@ -1,5 +1,5 @@
 /*
- * WebSearch - jQuery UI Widget v1.1
+ * WebSearch - jQuery UI Widget v1.1.1
  *
  * Copyright 2010, Rob Garrison (aka Mottie/Fudgey)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -22,17 +22,13 @@ $.widget("ui.websearch", {
 		windowTarget  : '_blank',  // Choose from '_blank', '_parent', '_self', '_top' or '{framename}'
 		windowOptions : '',        // Window options ("menubar=1,resizable=1,width=350,height=250", etc)
 		tooltipClass  : 'tooltip', // class added to the button, in case tooltips are to be used (site name and above message are in the button title).
+		hideSelector  : false,     // if true, the site selector button will be hidden
 		sortList      : true,      // if true, the site selection list will be sorted.
 		hidden        : false,     // if true, the entire websearch widget will be hidden.
 		searchResult  : null,      // add a search method here in case you want to open the search page in a lightbox.
 		websearch     : {          // add/replace/remove site searches; see the webSites variable above for examples.
 			// 'Site Name'  : ['css-class',          'search string{s}' ]
-			'Bing'          : ['ui-icon-bing',       'http://www.bing.com/search?q={s}'],
-			'Dictionary'    : ['ui-icon-dictionary', 'http://dictionary.reference.com/browse/{s}'],
-			'Google'        : ['ui-icon-google',     'http://www.google.com/search?q={s}'],
-			'Wikipedia'     : ['ui-icon-wikipedia',  'http://en.wikipedia.org/w/index.php?search={s}'],
-			'Wolfram Alpha' : ['ui-icon-wolfram',    'http://www.wolframalpha.com/input/?i={s}'],
-			'Yahoo'         : ['ui-icon-yahoo',      'http://search.yahoo.com/search?p={s}']
+			'Google'        : ['ui-icon-google',     'http://www.google.com/search?q={s}']
 		}
 	},
 
@@ -43,7 +39,7 @@ $.widget("ui.websearch", {
 			.addClass('ui-websearch-input ui-widget-content ui-corner-left')
 			.wrap('<div class="ui-websearch ui-widget"/>')
 			.after('<button class="ui-websearch ui-state-default ' + o.tooltipClass + '"><span class="ui-icon ui-icon-websearch"></span></button>' +
-			       '<button class="ui-state-default ui-corner-right ' + o.tooltipClass + '"><span class="ui-icon ui-icon-websearch-popup ui-icon-triangle-1-s"></span></button>' +
+			       '<button class="ui-state-default ' + o.tooltipClass + '"><span class="ui-icon ui-icon-websearch-popup ui-icon-triangle-1-s"></span></button>' +
 			       '<div class="ui-websearch-popup ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-helper-hidden-accessible"></div>')
 			.bind('mouseup focusout', function(){ self._popup(false); });
 
@@ -99,7 +95,13 @@ $.widget("ui.websearch", {
 			if (event.which !== 13) { return; }
 			self._search();
 		});
-		wsButton.find('.ui-icon-websearch').bind('click',function(){ self._search(); return false;});
+		wsButton.eq(1).addClass('ui-corner-right'); // last class has rounded corners
+
+		if (o.hideSelector) {
+			wsButton
+				.addClass('ui-corner-right')
+				.eq(1).hide();
+		}
 
 		// popup positioning constants
 		popupWidth = wsPopup.width();
@@ -112,7 +114,7 @@ $.widget("ui.websearch", {
 
 	// show (true) or hide (false) the site popup
 	_popup : function(show) {
-		if (show && wsPopup.is(':visible')) { return; }
+		if (show && wsPopup.is(':visible') || o.hideSelector) { return; }
 		if (!show) { wsPopup.fadeOut('slow'); return; }
 		var buttonLocation = wsButton.position(),
 			popupPositionX = ( buttonLocation.left + popupWidth < $(window).width() - 50 ) ? buttonLocation.left : $(window).width() - popupWidth - 50, // 50 = extra padding
