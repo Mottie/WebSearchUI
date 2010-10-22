@@ -1,7 +1,7 @@
 **WebSearchUI** - jQuery UI Widget (get non-dependant [version here][1])
 ----------
 
-**Overview** ([demo][1])
+**Overview** ([demo][2])
 
 This code is designed to make it easy to add a search widget to your web site.
 
