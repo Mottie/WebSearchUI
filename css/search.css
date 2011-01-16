@@ -24,6 +24,7 @@
 	cursor: pointer;
 }
 .ui-websearch-popup {
+	position: absolute;
 	padding: 5px 20px;
 	text-align: left;
 }
