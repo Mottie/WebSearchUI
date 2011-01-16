@@ -192,6 +192,10 @@ Some examples show two methods:
 
 **Change Log**
 
+* Version 1.1.2
+
+    * Removed "ui-helper-hidden-accessible" class and it prevented the popup from showing. The jQuery UI class was changed in version 1.8.7.
+
 * Version 1.1.1
 
     * Added <code>hideSelector</code> option to allow hiding the site selector button

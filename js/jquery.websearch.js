@@ -1,5 +1,5 @@
 /*
- * WebSearch - jQuery UI Widget v1.1.1
+ * WebSearch - jQuery UI Widget v1.1.2
  *
  * Copyright 2010, Rob Garrison (aka Mottie/Fudgey)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -40,7 +40,7 @@ $.widget("ui.websearch", {
 			.wrap('<div class="ui-websearch ui-widget"/>')
 			.after('<button class="ui-websearch ui-state-default ' + o.tooltipClass + '"><span class="ui-icon ui-icon-websearch"></span></button>' +
 			       '<button class="ui-state-default ' + o.tooltipClass + '"><span class="ui-icon ui-icon-websearch-popup ui-icon-triangle-1-s"></span></button>' +
-			       '<div class="ui-websearch-popup ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-helper-hidden-accessible"></div>')
+			       '<div class="ui-websearch-popup ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>')
 			.bind('mouseup focusout', function(){ self._popup(false); });
 
 		wsWrap = this.element.closest('.ui-widget');
